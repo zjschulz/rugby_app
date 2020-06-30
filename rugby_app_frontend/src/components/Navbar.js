@@ -5,7 +5,7 @@ const link = {
   width: '100px',
   padding: '12px',
   margin: '0 6px 6px',
-  background: 'blue',
+  background: 'darkblue',
   textDecoration: 'none',
   color: 'white',
 }
@@ -18,17 +18,13 @@ class Navbar extends React.Component {
           to="/"
           exact
           style={link}
-          activeStyle={{
-            background: 'darkblue'
-          }}
+          activeStyle={{background: 'maroon'}}
         >Home</NavLink>
         <NavLink
           to="/dashboard"
           exact
           style={link}
-          activeStyle={{
-            background: 'darkblue'
-          }}
+          activeStyle={{background: 'maroon'}}
         >Dashboard</NavLink>
       </div>
     )
