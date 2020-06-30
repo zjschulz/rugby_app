@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   root to: "static#home"
   #static root made for testing purposes
-  resources :players, only: [:index, :destroy, :create]
   resources :sessions, only: [:create]
   resources :users, only: [:create]
   delete :logout, to: "sessions#logout"
