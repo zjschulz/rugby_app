@@ -18,10 +18,40 @@ export default class App extends Component {
 
   }
   
+  checkLoginStatus() {
+    fetch(`http://localhost:3000/logged_in`, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+            withCredentials: true
+        })
+    .then(resp => {
+      if (resp.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN")
+        this.setState({
+          loggedInStatus: "LOGGED_IN",
+          user: resp.data.user
+        })
+      else if (!resp.data.logged_in & this.state.loggedInStatus === "LOGGED_IN")
+      this.setState({
+        loggedInStatus: "NOT_LOGGED_IN",
+        user: {}
+      });
+    })
+    .catch(err => {
+      console.log("check login error", err);
+    })
+  }
+
+  componentDidMount() {
+    this.checkLoginStatus()
+  }
+
   handleLogin(data) {
     this.setState({
       loggedInStatus: "LOGGED_IN",
-      user: data
+      user: data.user
     })
   }
 
