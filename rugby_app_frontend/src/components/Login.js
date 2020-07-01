@@ -18,7 +18,7 @@ export default class Login extends Component {
     handleSubmit(event) {
         console.log("form submitted");
         event.preventDefault();
-        fetch(`http://localhost:3000/sessions`, {
+        fetch(`http://localhost:3001/sessions`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',

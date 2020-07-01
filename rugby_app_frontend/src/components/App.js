@@ -19,7 +19,7 @@ export default class App extends Component {
   }
   
   checkLoginStatus() {
-    fetch(`http://localhost:3000/logged_in`, {
+    fetch(`http://localhost:3001/logged_in`, {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json',
@@ -27,13 +27,14 @@ export default class App extends Component {
             },
             withCredentials: true
         })
-    .then(resp => {
-      if (resp.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN")
+    .then(resp => resp.json())
+    .then(data => {
+      if (data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN")
         this.setState({
           loggedInStatus: "LOGGED_IN",
-          user: resp.data.user
+          user: data.user
         })
-      else if (!resp.data.logged_in & this.state.loggedInStatus === "LOGGED_IN")
+      else if (!data.logged_in & this.state.loggedInStatus === "LOGGED_IN")
       this.setState({
         loggedInStatus: "NOT_LOGGED_IN",
         user: {}

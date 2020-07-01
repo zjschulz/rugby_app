@@ -19,7 +19,7 @@ export default class Registration extends Component {
     handleSubmit(event) {
         console.log("form submitted");
         event.preventDefault();
-        fetch(`http://localhost:3000/users`, {
+        fetch(`http://localhost:3001/users`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',

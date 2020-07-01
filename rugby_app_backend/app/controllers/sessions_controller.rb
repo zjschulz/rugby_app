@@ -22,10 +22,14 @@ class SessionsController < ApplicationController
     
     def logged_in
       if @current_user
+        render json: {
+          logged_in: true,
+          user: user
+        }
       else
-        #render json: {
-        #  logged_in: false
-        #}
+        render json: {
+         logged_in: false
+        }
       end
     end
 
