@@ -28,6 +28,7 @@ export default class App extends Component {
             withCredentials: true
         })
     .then(resp => resp.json())
+    .then(data => console.log(data))
     .then(data => {
       if (data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN")
         this.setState({

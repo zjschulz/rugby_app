@@ -30,8 +30,11 @@ export default class Login extends Component {
             }),
             withCredentials: true
         })
-        .then(resp => {
-            console.log("registration response", resp)    
+        .then(resp => resp.json())
+        .then(data => {
+            if (data.logged_in) {
+                this.props.handleSuccessfulAuth(data);
+            }   
         })
         .catch(err => console.log("registration error", err)); 
     }
