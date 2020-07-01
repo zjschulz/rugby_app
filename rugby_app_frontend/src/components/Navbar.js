@@ -26,18 +26,6 @@ class Navbar extends React.Component {
           style={link}
           activeStyle={{background: 'maroon'}}
         >Dashboard</NavLink>
-        <NavLink
-          to="/signup"
-          exact
-          style={link}
-          activeStyle={{background: 'maroon'}}
-        >Registration</NavLink>
-        <NavLink
-          to="/login"
-          exact
-          style={link}
-          activeStyle={{background: 'maroon'}}
-        >Login</NavLink>
       </div>
     )
   }
