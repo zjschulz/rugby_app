@@ -28,6 +28,7 @@ export default class TeamForm extends Component {
             })
         })
         .then(resp => resp.json())
+        //redirect to dashboard??
         .then(data => console.log(data))
         .catch(err => console.log(err));
     };
