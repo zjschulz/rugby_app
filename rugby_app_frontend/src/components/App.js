@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-import Home from './Home';
+import Home from './Auth/Home';
 import Dashboard from './Dashboard';
+import GameForm from './GameForm';
 import Navbar from './Navbar';
 
 export default class App extends Component {
@@ -87,6 +88,13 @@ export default class App extends Component {
               path={"/dashboard"}
               render={props => (
                 <Dashboard {...props} loggedInStatus={this.state.loggedInStatus} />
+              )} 
+            />
+            <Route
+              exact
+              path={"/gameform"}
+              render={props => (
+                <GameForm {...props} loggedInStatus={this.state.loggedInStatus} />
               )} 
             />
           </Switch>
