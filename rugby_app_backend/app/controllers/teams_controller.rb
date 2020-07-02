@@ -15,4 +15,10 @@ class TeamsController < ApplicationController
         render :json => team 
     end
 
+    def update
+        team = Team.find(params[:id])
+        team.update_attributes(name: params[:name], wins: params[:wins], losses: params[:losses], draws: params[:draws], pf: params[:pf], pa: params[:pa], pd: params[:pd], bp: params[:bp], tp: params[:tp])
+        render :json => team
+    end
+
 end
