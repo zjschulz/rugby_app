@@ -88,7 +88,9 @@ export default class App extends Component {
               exact
               path={"/dashboard"}
               render={props => (
-                <Dashboard {...props} loggedInStatus={this.state.loggedInStatus} />
+                <Dashboard {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}/>
               )} 
             />
             <Route
