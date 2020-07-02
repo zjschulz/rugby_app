@@ -1,25 +1,9 @@
-function teamReducer(
-    state = {
-                teams: [
-                    {name: "test",
-                    wins: "27/05/2020",
-                    losses: "test site",
-                    draws: "",
-                    pf: "",
-                    pa: "",
-                    pd: "",
-                    bp: "",
-                    tp: ""}
-                ]}, action
-    ) {
+export default function teamReducer(state = {teams: []}, action) {
         switch (action.type){
             case "GET_TEAMS":
-                return state.teams
+                return {teams: action.payload}
             case "ADD_TEAM":
-                return {
-                    ...state,
-                        teams: state.teams.concat(action.newTeam)
-                }
+                return {...state, teams: [...state.teams, action.payload]}
             default:   
                 return state;
         }
