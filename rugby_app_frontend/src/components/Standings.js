@@ -19,7 +19,7 @@ export default class Standings extends React.Component {
         }))
         .catch(err => alert(err));
     };
-    // .filter(x => x.user_id == this.props.user.id).
+
     generateTeams = () => {
         return this.state.data.filter(x => x.user_id == this.props.user.id).map(team => <Team
           name = {team.name}
