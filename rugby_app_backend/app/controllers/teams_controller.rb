@@ -11,7 +11,7 @@ class TeamsController < ApplicationController
 
     def create
         user = User.find_by(id: params[:user_id])
-        team = Team.create(name: params[:name], wins: params[:wins], losses: params[:losses], draws: params[:draws], pf: params[:pf], pa: params[:pa], pd: params[:pd], bp: params[:bp], tp: params[:tp], user: user)
+        team = Team.create(name: params[:name], wins: 0, losses: 0, draws: 0, pf: 0, pa: 0, pd: 0, bp: 0, tp: 0, user: user)
         render :json => team 
     end
 

@@ -7,7 +7,7 @@ export default class TeamForm extends Component {
 
         this.state = {
             name: "",
-            user: this.props.user
+            user_id: this.props.user.id
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -24,7 +24,7 @@ export default class TeamForm extends Component {
             },
             body: JSON.stringify({
                 name: this.state.name,
-                user: this.state.user
+                user_id: this.state.user_id
             })
         })
         .then(resp => resp.json())
