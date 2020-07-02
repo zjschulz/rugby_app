@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  wins: MyString
+  losses: MyString
+  draws: MyString
+  pf: MyString
+  pa: MyString
+  pd: MyString
+  bp: MyString
+  tp: MyString
+
+two:
+  name: MyString
+  wins: MyString
+  losses: MyString
+  draws: MyString
+  pf: MyString
+  pa: MyString
+  pd: MyString
+  bp: MyString
+  tp: MyString
