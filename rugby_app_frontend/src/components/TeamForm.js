@@ -6,7 +6,8 @@ export default class TeamForm extends Component {
         super(props);
 
         this.state = {
-            name: ""
+            name: "",
+            user: this.props.user
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,8 +16,21 @@ export default class TeamForm extends Component {
   
     handleSubmit(event) {
         event.preventDefault();
-        // fetch request to create team
-    }
+        fetch(`http://localhost:3001/teams`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                name: this.state.name,
+                user: this.state.user
+            })
+        })
+        .then(resp => resp.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
+    };
 
     handleChange(event) {
         this.setState({

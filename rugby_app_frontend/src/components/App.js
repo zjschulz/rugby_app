@@ -102,7 +102,7 @@ export default class App extends Component {
               exact
               path={"/teamform"}
               render={props => (
-                <TeamForm {...props} loggedInStatus={this.state.loggedInStatus} />
+                <TeamForm {...props} loggedInStatus={this.state.loggedInStatus} user={this.state.user}/>
               )} 
             />
           </Switch>
