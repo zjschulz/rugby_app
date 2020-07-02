@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Home from '../containers/Home';
-import Dashboard from './Dashboard';
+import Dashboard from '../containers/Dashboard';
 import GameForm from './GameForm';
+import TeamForm from './TeamForm';
 import Navbar from './Navbar';
 
 export default class App extends Component {
@@ -95,6 +96,13 @@ export default class App extends Component {
               path={"/gameform"}
               render={props => (
                 <GameForm {...props} loggedInStatus={this.state.loggedInStatus} />
+              )} 
+            />
+            <Route
+              exact
+              path={"/teamform"}
+              render={props => (
+                <TeamForm {...props} loggedInStatus={this.state.loggedInStatus} />
               )} 
             />
           </Switch>

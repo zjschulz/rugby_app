@@ -32,6 +32,12 @@ class Navbar extends React.Component {
           style={link}
           activeStyle={{background: 'maroon'}}
         >Game Form</NavLink>
+        <NavLink
+          to="/teamform"
+          exact
+          style={link}
+          activeStyle={{background: 'maroon'}}
+        >Team Form</NavLink>
       </div>
     )
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import Standings from './Standings';
+import Standings from '../components/Standings';
 
 const Dashboard = props => {
     return (
