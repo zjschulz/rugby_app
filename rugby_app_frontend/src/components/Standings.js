@@ -3,14 +3,19 @@ import Team from './Team';
 
 export default class Standings extends React.Component {
 
-    // generateInfo = () => {
+    // generateTeams = () => {
     //     return this.state.teams.map((team, index) => <Team
     //       key = {index}
-    //       site = {reservation.site}
-    //       name = {reservation.name}
-    //       date = {reservation.date}
+    //       name = {team.name}
+    //       wins = {team.wins}
+    //       losses = {team.losses}
+    //       draws = {team.draws}
+    //       pf = {team.pf}
+    //       pa = {team.pa}
+    //       pd = {team.pd}
+    //       bp = {team.bp}
+    //       tp = {team.tp}
     //       />)
-    
     //     };
 
     render() {    
@@ -18,7 +23,6 @@ export default class Standings extends React.Component {
             <div>
             <table>
                 <tr>
-                    <th></th>
                     <th>Team Name</th>
                     <th>Win</th>
                     <th>Loss</th>
@@ -30,7 +34,7 @@ export default class Standings extends React.Component {
                     <th>Total Points</th>
                 </tr>
                 <tbody>
-                    {/* {this.generateReservations()} */}
+                    {/* {this.generateTeams()} */}
                     <Team />
                 </tbody>
             </table>
