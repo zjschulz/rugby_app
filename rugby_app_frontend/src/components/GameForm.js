@@ -22,6 +22,28 @@ export default class GameForm extends Component {
   
     handleSubmit(event) {
         event.preventDefault();
+        //need to figure out how to get team id based on team name
+        fetch(`http://localhost:3001/teams/${team.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                wins: "",
+                losses: "",
+                draws: "",
+                pf: "",
+                pa: "",
+                pd: "",
+                bp: "",
+                tp: ""
+            })
+        })
+        .then(resp => resp.json())
+        //redirect to dashboard??
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
         // needs to update both teams depending on the info provided in the form
         // would be two seperate fetch requests to update team info
     }
