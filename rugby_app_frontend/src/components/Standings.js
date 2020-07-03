@@ -21,7 +21,7 @@ export default class Standings extends React.Component {
     };
 
     generateTeams = () => {
-        return this.state.data.filter(x => x.user_id == this.props.user.id).map(team => <Team
+        return this.state.data.filter(x => x.user_id === this.props.user.id).map(team => <Team
           name = {team.name}
           wins = {team.wins}
           losses = {team.losses}

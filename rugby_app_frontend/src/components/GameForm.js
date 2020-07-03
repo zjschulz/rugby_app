@@ -14,6 +14,15 @@ export default class GameForm extends Component {
             convB: "",
             kickA: "",
             kickB: "",
+            pfA: "",
+            pfB: "",
+            paA: "",
+            paB: "",
+            awin: "",
+            bwin: "",
+            aloss: "",
+            bloss: "",
+            draw: "",
             teams: []
         }
 
@@ -32,9 +41,8 @@ export default class GameForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const ateam = this.state.data.find_by(x => x.name == this.state.teamA)
-        const bteam = this.state.data.find_by(x => x.name == this.state.teamB)
-        //need to figure out how to get team id based on team name
+        const ateam = this.state.data.find(x => x.name === this.state.teamA);
+        const bteam = this.state.data.find(x => x.name === this.state.teamB);
         fetch(`http://localhost:3001/teams/${ateam.id}`, {
             method: 'PUT',
             headers: {
@@ -42,14 +50,15 @@ export default class GameForm extends Component {
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                wins: "",
-                losses: "",
-                draws: "",
-                pf: "",
-                pa: "",
-                pd: "",
-                bp: "",
-                tp: ""
+                name: ateam.name,
+                wins: ateam.wins + this.state.awin,
+                losses: ateam.losses + this.state.aloss,
+                draws: ateam.draws + this.state.draw,
+                pf: ateam.pf + this.state.pfA,
+                pa: ateam.pa + this.state.paA,
+                pd: ateam.pd + this.state.pfA - this.state.paA,
+                bp: ateam.bp,
+                tp: ateam.tp + this.state.awin*4 + this.state.draw*2
             })
         })
         .then(resp => resp.json())
@@ -63,7 +72,27 @@ export default class GameForm extends Component {
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
+        });
+        this.setState({
+            pfA: this.state.tryA*5 + this.state.convA*2 + this.state.kickA*3,
+            pfB: this.state.tryB*5 + this.state.convB*2 + this.state.kickB*3,
+            paA: this.state.tryB*5 + this.state.convB*2 + this.state.kickB*3,
+            paB: this.state.tryA*5 + this.state.convA*2 + this.state.kickA*3
+        });
+        if (this.state.pfA > this.state.paA)
+            this.setState({
+                awin: 1,
+                bloss: 1
+            })
+        else if (this.state.pfA < this.state.paA)
+        this.setState({
+            aloss: 1,
+            bwin: 1
         })
+        else if (this.state.pfA = this.state.paA)
+        this.setState({
+            draw: 1
+        })    
     }
 
     render () {
