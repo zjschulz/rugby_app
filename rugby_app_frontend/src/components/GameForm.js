@@ -13,17 +13,29 @@ export default class GameForm extends Component {
             convA: "",
             convB: "",
             kickA: "",
-            kickB: ""
+            kickB: "",
+            teams: []
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
-  
+
+    componentDidMount() {
+        fetch('http://localhost:3001/teams')
+        .then(resp => resp.json())
+        .then(data => this.setState({
+            data: data
+        }))
+        .catch(err => alert("team fetch error", err));
+    };
+
     handleSubmit(event) {
         event.preventDefault();
+        const ateam = this.state.data.find_by(x => x.name == this.state.teamA)
+        const bteam = this.state.data.find_by(x => x.name == this.state.teamB)
         //need to figure out how to get team id based on team name
-        fetch(`http://localhost:3001/teams/${team.id}`, {
+        fetch(`http://localhost:3001/teams/${ateam.id}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json',
