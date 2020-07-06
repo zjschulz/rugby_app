@@ -23,6 +23,8 @@ export default class GameForm extends Component {
             aloss: "",
             bloss: "",
             draw: "",
+            bpA: "",
+            bpB: "",
             teams: []
         }
 
@@ -62,11 +64,31 @@ export default class GameForm extends Component {
             })
         })
         .then(resp => resp.json())
-        //redirect to dashboard??
         .then(data => console.log(data))
         .catch(err => console.log(err));
-        // needs to update both teams depending on the info provided in the form
-        // would be two seperate fetch requests to update team info
+        fetch(`http://localhost:3001/teams/${bteam.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                name: bteam.name,
+                wins: bteam.wins + this.state.bwin,
+                losses: bteam.losses + this.state.bloss,
+                draws: bteam.draws + this.state.draw,
+                pf: bteam.pf + this.state.pfB,
+                pa: bteam.pa + this.state.paB,
+                pd: bteam.pd + this.state.pfB - this.state.paB,
+                bp: bteam.bp,
+                tp: bteam.tp + this.state.bwin*4 + this.state.draw*2
+            })
+        })
+        .then(resp => resp.json())
+        .then(data => console.log(data))
+        .catch(err => console.log(err));
+        //redirect to dashboard??
+        //this.props.history.push("/dashboard");
     }
 
     handleChange(event) {
@@ -79,20 +101,37 @@ export default class GameForm extends Component {
             paA: this.state.tryB*5 + this.state.convB*2 + this.state.kickB*3,
             paB: this.state.tryA*5 + this.state.convA*2 + this.state.kickA*3
         });
-        if (this.state.pfA > this.state.paA)
-            this.setState({
-                awin: 1,
-                bloss: 1
-            })
-        else if (this.state.pfA < this.state.paA)
-        this.setState({
-            aloss: 1,
-            bwin: 1
-        })
-        else if (this.state.pfA = this.state.paA)
-        this.setState({
-            draw: 1
-        })    
+        // need to verify how to do this crazy conditional
+        // if (this.state.pfA > this.state.paA)
+        //     this.setState({
+        //         awin: 1,
+        //         bloss: 1
+        //     });
+        //     if ((this.state.tryA - this.state.tryB) >= 3)
+        //         this.setState({
+        //             bpA: 1
+        //         })
+        //     else if ((this.state.pfA - this.state.paA) <= 8 )
+        //         this.setState({
+        //             bpB: 1
+        //         })
+        // else if (this.state.pfA < this.state.paA)
+        //     this.setState({
+        //         aloss: 1,
+        //         bwin: 1
+        //     })
+        //     if ((this.state.tryB - this.state.tryA) >= 3)
+        //         this.setState({
+        //             bpB: 1
+        //         })
+        //     else if ((this.state.pfB - this.state.paB) <= 8 )
+        //         this.setState({
+        //             bpA: 1
+        //         })
+        // else if (this.state.pfA = this.state.paA)
+        //     this.setState({
+        //         draw: 1
+        //     })    
     }
 
     render () {
