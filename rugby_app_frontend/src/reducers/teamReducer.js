@@ -11,4 +11,4 @@ export default function teamReducer(state = {teams: []}, action) {
         }
     }
     
-    export default teamReducer;
+export default teamReducer;
