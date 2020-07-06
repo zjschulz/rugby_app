@@ -97,14 +97,18 @@ export default class App extends Component {
               exact
               path={"/gameform"}
               render={props => (
-                <GameForm {...props} loggedInStatus={this.state.loggedInStatus} />
+                <GameForm {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user} />
               )} 
             />
             <Route
               exact
               path={"/teamform"}
               render={props => (
-                <TeamForm {...props} loggedInStatus={this.state.loggedInStatus} user={this.state.user}/>
+                <TeamForm {...props}
+                loggedInStatus={this.state.loggedInStatus}
+                user={this.state.user}/>
               )} 
             />
           </Switch>
