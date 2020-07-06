@@ -59,7 +59,7 @@ export default class GameForm extends Component {
                 pf: ateam.pf + this.state.pfA,
                 pa: ateam.pa + this.state.paA,
                 pd: ateam.pd + this.state.pfA - this.state.paA,
-                bp: ateam.bp,
+                bp: ateam.bp + this.state.bpA,
                 tp: ateam.tp + this.state.awin*4 + this.state.draw*2
             })
         })
@@ -80,7 +80,7 @@ export default class GameForm extends Component {
                 pf: bteam.pf + this.state.pfB,
                 pa: bteam.pa + this.state.paB,
                 pd: bteam.pd + this.state.pfB - this.state.paB,
-                bp: bteam.bp,
+                bp: bteam.bp + this.state.bpB,
                 tp: bteam.tp + this.state.bwin*4 + this.state.draw*2
             })
         })
@@ -88,7 +88,7 @@ export default class GameForm extends Component {
         .then(data => console.log(data))
         .catch(err => console.log(err));
         //redirect to dashboard??
-        //this.props.history.push("/dashboard");
+        this.props.history.push("/dashboard");
     }
 
     handleChange(event) {
@@ -102,36 +102,36 @@ export default class GameForm extends Component {
             paB: this.state.tryA*5 + this.state.convA*2 + this.state.kickA*3
         });
         // need to verify how to do this crazy conditional
-        // if (this.state.pfA > this.state.paA)
-        //     this.setState({
-        //         awin: 1,
-        //         bloss: 1
-        //     });
-        //     if ((this.state.tryA - this.state.tryB) >= 3)
-        //         this.setState({
-        //             bpA: 1
-        //         })
-        //     else if ((this.state.pfA - this.state.paA) <= 8 )
-        //         this.setState({
-        //             bpB: 1
-        //         })
-        // else if (this.state.pfA < this.state.paA)
-        //     this.setState({
-        //         aloss: 1,
-        //         bwin: 1
-        //     })
-        //     if ((this.state.tryB - this.state.tryA) >= 3)
-        //         this.setState({
-        //             bpB: 1
-        //         })
-        //     else if ((this.state.pfB - this.state.paB) <= 8 )
-        //         this.setState({
-        //             bpA: 1
-        //         })
-        // else if (this.state.pfA = this.state.paA)
-        //     this.setState({
-        //         draw: 1
-        //     })    
+        if (this.state.pfA > this.state.paA) {
+            this.setState({
+                awin: 1,
+                bloss: 1
+            });
+            if ((this.state.tryA - this.state.tryB) >= 3) {
+                this.setState({
+                    bpA: 1
+                })}
+            else if ((this.state.pfA - this.state.paA) <= 8 ){
+                this.setState({
+                    bpB: 1
+                })}}
+        else if (this.state.pfA < this.state.paA) {
+            this.setState({
+                aloss: 1,
+                bwin: 1
+            })
+            if ((this.state.tryB - this.state.tryA) >= 3){
+                this.setState({
+                    bpB: 1
+                })}
+            else if ((this.state.pfB - this.state.paB) <= 8 ){
+                this.setState({
+                    bpA: 1
+                })}}
+        else if (this.state.pfA === this.state.paA) {
+            this.setState({
+                draw: 1
+            })}    
     }
 
     render () {
