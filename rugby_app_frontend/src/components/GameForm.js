@@ -101,8 +101,8 @@ export default class GameForm extends Component {
             paA: this.state.tryB*5 + this.state.convB*2 + this.state.kickB*3,
             paB: this.state.tryA*5 + this.state.convA*2 + this.state.kickA*3
         });
-        // need to verify how to do this crazy conditional
-        if (this.state.pfA > this.state.paA) {
+        
+        if (this.state.pfA > this.state.paA){ 
             this.setState({
                 awin: 1,
                 bloss: 1
