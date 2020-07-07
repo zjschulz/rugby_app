@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class TeamForm extends Component {
+class TeamForm extends Component {
   
     constructor(props) {
         super(props);
@@ -16,21 +17,22 @@ export default class TeamForm extends Component {
   
     handleSubmit(event) {
         event.preventDefault();
-        fetch(`http://localhost:3001/teams`, {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                name: this.state.name,
-                user_id: this.state.user_id
-            })
-        })
-        .then(resp => resp.json())
-        //redirect to dashboard??
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
+        this.props.dispatch({ type: 'ADD_TEAM', payload: this.state });
+        // fetch(`http://localhost:3001/teams`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-type': 'application/json',
+        //         'Accept': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         name: this.state.name,
+        //         user_id: this.state.user_id
+        //     })
+        // })
+        // .then(resp => resp.json())
+        // //redirect to dashboard??
+        // .then(data => console.log(data))
+        // .catch(err => console.log(err));
     };
 
     handleChange(event) {
@@ -58,3 +60,5 @@ export default class TeamForm extends Component {
         )
     }
 }
+
+export default connect()(TeamForm);
