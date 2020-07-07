@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addTeam } from '../actions/actions';
-
+ 
 class TeamForm extends Component {
   
     constructor(props) {

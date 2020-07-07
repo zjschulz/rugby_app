@@ -1,27 +1,24 @@
 import React from 'react';
 import Team from './Team';
+import { connect } from 'react-redux';
+import { fetchTeams } from '../actions/actions';
 
-export default class Standings extends React.Component {
+class Standings extends React.Component {
 
-    constructor() {
-        super();
+    // constructor() {
+    //     super();
     
-        this.state = {
-          data: []
-        };
-    }    
-
+    //     this.state = {
+    //       data: []
+    //     };
+    // }    
+ 
     componentDidMount() {
-        fetch('http://localhost:3001/teams')
-        .then(resp => resp.json())
-        .then(data => this.setState({
-            data: data
-        }))
-        .catch(err => alert(err));
+        this.props.fetchTeams()
     };
 
     generateTeams = () => {
-        return this.state.data.filter(x => x.user_id === this.props.user.id).map((team, index) => <Team
+        return this.props.teams.filter(x => x.user_id === this.props.user.id).map((team, index) => <Team
           key = {index}
           name = {team.name}
           wins = {team.wins}
@@ -51,11 +48,21 @@ export default class Standings extends React.Component {
                     <th>Bonus Points</th>
                     <th>Total Points</th>
                 </tr>
-                    {this.generateTeams()}
+                    {/* {this.generateTeams()} */}
                     <Team />
                 </tbody>
             </table>
             </div>
         )
         }
-    }
+}
+
+function mapDispatchToProps(dispatch){
+    return { fetchTeams: () => dispatch(fetchTeams()) }
+  }
+   
+function mapStateToProps(state){
+    return {teams: state.teams}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Standings)
