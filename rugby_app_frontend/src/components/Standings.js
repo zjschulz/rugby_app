@@ -5,14 +5,6 @@ import { fetchTeams } from '../actions/actions';
 
 class Standings extends React.Component {
 
-    // constructor() {
-    //     super();
-    
-    //     this.state = {
-    //       data: []
-    //     };
-    // }    
- 
     componentDidMount() {
         this.props.fetchTeams()
     };
@@ -49,20 +41,15 @@ class Standings extends React.Component {
                     <th>Total Points</th>
                 </tr>
                     {/* {this.generateTeams()} */}
-                    <Team />
                 </tbody>
             </table>
             </div>
         )
-        }
+    }
 }
 
-function mapDispatchToProps(dispatch){
-    return { fetchTeams: () => dispatch(fetchTeams()) }
-  }
-   
-function mapStateToProps(state){
+const mapStateToProps = state => {
     return {teams: state.teams}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Standings)
+export default connect(mapStateToProps, { fetchTeams })(Standings)

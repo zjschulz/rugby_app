@@ -1,17 +1,17 @@
 export function fetchTeams() {
     return (dispatch) => {
-        dispatch({ type: 'GET_TEAMS' });
+        // dispatch({ type: 'GET_TEAMS' });
         return fetch('http://localhost:3001/teams')
         .then(response => response.json())
         .then(data => console.log(data))
-        // .then(data => dispatch({ type: 'GET_TEAMS', payload: data }))
+        .then(data => dispatch({ type: 'GET_TEAMS', payload: data }))
         .catch(err => alert(err))
     };
 }
 
 export function addTeam(formData) {
     return (dispatch) => {
-        dispatch({ type: 'ADD_TEAM'});
+        // dispatch({ type: 'ADD_TEAM'});
         return fetch(`http://localhost:3001/teams`, {
             method: 'POST',
             headers: {
