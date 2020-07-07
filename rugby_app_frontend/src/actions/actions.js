@@ -1,5 +1,3 @@
-import fetch from 'isomorphic-fetch';
-
 export function fetchTeams() {
     return (dispatch) => {
         dispatch({ type: 'GET_TEAMS' });
@@ -10,7 +8,7 @@ export function fetchTeams() {
     };
 }
 
-export function addTeam() {
+export function addTeam(formData) {
     return (dispatch) => {
         dispatch({ type: 'ADD_TEAM'});
         return fetch(`http://localhost:3001/teams`, {
@@ -20,8 +18,8 @@ export function addTeam() {
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                name: this.state.name,
-                user_id: this.state.user_id
+                name: formData.name,
+                user_id: formData.user_id
             })
         })
         .then(response => response.json())
@@ -30,7 +28,7 @@ export function addTeam() {
     };
 }
 
-export function updateTeam() {
+export function updateTeam(ateam, bteam) {
     return (dispatch) => {
         dispatch({ type: 'UPDATE_TEAM'});
         return fetch(`http://localhost:3001/teams/${bteam.id}`, {
