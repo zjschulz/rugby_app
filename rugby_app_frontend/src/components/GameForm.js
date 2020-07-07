@@ -88,7 +88,6 @@ export default class GameForm extends Component {
         .then(data => console.log(data))
         .catch(err => console.log(err));
         //redirect to dashboard??
-        this.props.history.push("/dashboard");
     }
 
     handleChange(event) {
