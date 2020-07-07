@@ -17,10 +17,10 @@ This form reviews all requirements in the spec.md form, as well as project stand
 # Redux and redux-thunk middleware are being used to modify state change and make use of async actions to send data and receive data from the server *
 [_]
 # Use of Rails API backend to persist data for the application *
-[_]
+[X]
 # Good understanding of the react/redux state flow *
-[_]
+[X]
 # Good understanding of state and props in React *
-[_]
+[X]
 # Knowledge of async JS with Promises *
-[_]
+[X]
