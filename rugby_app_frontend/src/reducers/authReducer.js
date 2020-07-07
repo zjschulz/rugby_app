@@ -10,5 +10,3 @@ export default function authReducer(state = {user: []}, action) {
             return state;
     }
 }
-
-export default authReducer;
