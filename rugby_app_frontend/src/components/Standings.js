@@ -10,7 +10,20 @@ class Standings extends React.Component {
     };
 
     generateTeams = () => {
-        return this.props.teams.teams.filter(x => x.user_id === this.props.user.id).map((team, index) => <Team
+        function compare(a, b) {
+            const tpA = a.tp;
+            const tpB = b.tp;
+          
+            let comparison = 0;
+            if (tpA > tpB) {
+              comparison = 1;
+            } else if (tpA < tpB) {
+              comparison = -1;
+            }
+            return comparison * -1;
+          };
+
+        return this.props.teams.teams.filter(x => x.user_id === this.props.user.id).sort(compare).map((team, index) => <Team
           key = {index}
           name = {team.name}
           wins = {team.wins}
