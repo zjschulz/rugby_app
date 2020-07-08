@@ -8,13 +8,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this)
     this.handleLogoutClick = this.handleLogoutClick.bind(this)
-  }
-
-  handleSuccessfulAuth(data) {
-    this.props.handleLogin(data);
-    this.props.history.push("/dashboard");
   }
 
   handleLogoutClick() {
@@ -38,4 +32,4 @@ const mapStateToProps = state => {
   return {loggedInStatus: state.loggedInStatus, user: state.user}
 }
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps, { handleLogout })(Home)

@@ -1,14 +1,23 @@
 import React from 'react';
 import Standings from './Standings';
+import { connect } from 'react-redux';
 
-const Dashboard = props => {
-    return (
-        <div>
-            <h1>Dashboard</h1>
-            <h1>Status: {props.loggedInStatus}</h1>
-            <Standings user={props.user}/>
-        </div>
-    )
+class Dashboard extends React.Component {
+    
+    render () {
+        return (
+            <div>
+                <h1>Dashboard</h1>
+                <h1>Status: {this.props.user.loggedInStatus}</h1>
+                <Standings/>
+            </div>
+        )
+    }
+    
 }
 
-export default Dashboard;
+const mapStateToProps = state => {
+    return {loggedInStatus: state.loggedInStatus, user: state.user}
+  }
+  
+export default connect(mapStateToProps)(Dashboard)

@@ -61,7 +61,7 @@ class Standings extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return {teams: state.teams}
+    return {teams: state.teams, user: state.user.user}
 }
 
 export default connect(mapStateToProps, { fetchTeams })(Standings)
