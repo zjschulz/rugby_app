@@ -1,9 +1,7 @@
 export default function authReducer(state = {user: []}, action) {
     switch (action.type){
         case "LOGIN":
-            return state
-        case "REGISTER":
-            return state
+            return {...state, user: action.payload}
         case "LOGOUT":
             return state 
         default:   
