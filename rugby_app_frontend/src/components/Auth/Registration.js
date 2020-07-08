@@ -1,6 +1,8 @@
 import React, { Component } from 'react'; 
+import { connect } from 'react-redux';
+import { register } from '/home/zjschulz/rugby_app/rugby_app_frontend/src/actions/actions';
 
-export default class Registration extends Component {
+class Registration extends Component {
   
     constructor(props) {
         super(props);
@@ -19,26 +21,7 @@ export default class Registration extends Component {
     handleSubmit(event) {
         console.log("form submitted");
         event.preventDefault();
-        fetch(`http://localhost:3001/users`, {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                email: this.state.email,
-                password: this.state.password,
-                password_confirmation: this.state.password_confirmation
-            }),
-            withCredentials: true
-        })
-        .then(resp => resp.json())
-        .then(data => {
-            if (data.status === "created") {
-                this.props.handleSuccessfulAuth(data)
-            }    
-        })
-        .catch(err => console.log("registration error", err)); 
+        this.props.register(this.state)
     }
 
     handleChange(event) {
@@ -79,3 +62,5 @@ export default class Registration extends Component {
         )
     }
 }
+
+export default connect(null, { register })(Registration)

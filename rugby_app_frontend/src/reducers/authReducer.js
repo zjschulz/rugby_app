@@ -13,8 +13,10 @@ export default function authReducer(state = {
                 return {loggedInStatus: "LOGGED_IN", user: action.payload.user}
             }
             else { return state }  
-        case "LOGOUT":
+        case "LOGOUT" :
             return {loggedInStatus: "NOT_LOGGED_IN", user: {}}
+        case "REGISTER" :
+            return state
         default:   
             return state;
     }

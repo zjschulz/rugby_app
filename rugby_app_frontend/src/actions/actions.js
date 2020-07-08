@@ -142,18 +142,14 @@ export function register(formdata) {
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                email: this.state.email,
-                password: this.state.password,
-                password_confirmation: this.state.password_confirmation
+                email: formdata.email,
+                password: formdata.password,
+                password_confirmation: formdata.password_confirmation
             }),
             withCredentials: true
         })
         .then(resp => resp.json())
-        .then(data => {
-            if (data.status === "created") {
-                this.props.handleSuccessfulAuth(data)
-            }    
-        })
+        .then(data => dispatch({ type: 'REGISTER', payload: data }))
         .catch(err => console.log("registration error", err));
     }
 }
