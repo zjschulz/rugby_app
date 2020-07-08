@@ -96,7 +96,7 @@ class GameForm extends Component {
         return (
             <div>
                 <h1>New Game Form</h1>
-                <h1>Status: {this.props.user.loggedInStatus}</h1>
+                <h1>Status: {this.props.loggedInStatus}</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input
                     type="teamA"
@@ -162,7 +162,7 @@ class GameForm extends Component {
 }
 
 const mapStateToProps = state => {
-    return {teams: state.teams, loggedInStatus: state.loggedInStatus, user: state.user.user}
+    return {teams: state.teams, loggedInStatus: state.user.loggedInStatus, user: state.user.user}
 }
 
 export default connect(mapStateToProps, { fetchTeams, updateTeamA, updateTeamB })(GameForm)

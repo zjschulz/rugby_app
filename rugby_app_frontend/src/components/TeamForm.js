@@ -31,7 +31,7 @@ class TeamForm extends Component {
         return (
             <div>
                 <h1>New Team Form</h1>
-                <h1>Status: {this.props.user.loggedInStatus}</h1>
+                <h1>Status: {this.props.loggedInStatus}</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input
                     type="name"
@@ -48,7 +48,7 @@ class TeamForm extends Component {
 }
 
 const mapStateToProps = state => {
-    return {loggedInStatus: state.loggedInStatus, user: state.user.user}
+    return {loggedInStatus: state.user.loggedInStatus, user: state.user.user}
   }
 
 export default connect(mapStateToProps, { addTeam })(TeamForm)

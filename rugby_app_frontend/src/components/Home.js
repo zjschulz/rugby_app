@@ -20,8 +20,8 @@ class Home extends Component {
       <div className="home">
         <h1>Home</h1>
         <h1>Status: {this.props.user.loggedInStatus}</h1>
-        <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}/>
-        <Login handleSuccessfulAuth={this.handleSuccessfulAuth}/>
+        <Registration/>
+        <Login/>
         <button onClick={() => this.handleLogoutClick()}>Logout</button>
       </div>
     )
