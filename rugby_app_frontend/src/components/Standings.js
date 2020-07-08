@@ -10,7 +10,7 @@ class Standings extends React.Component {
     };
 
     generateTeams = () => {
-        return this.props.teams.filter(x => x.user_id === this.props.user.id).map((team, index) => <Team
+        return this.props.teams.teams.filter(x => x.user_id === this.props.user.id).map((team, index) => <Team
           key = {index}
           name = {team.name}
           wins = {team.wins}
@@ -40,7 +40,7 @@ class Standings extends React.Component {
                     <th>Bonus Points</th>
                     <th>Total Points</th>
                 </tr>
-                    {/* {this.generateTeams()} */}
+                    {this.generateTeams()}
                 </tbody>
             </table>
             </div>
