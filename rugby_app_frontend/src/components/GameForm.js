@@ -58,11 +58,11 @@ class GameForm extends Component {
             paA: this.state.tryB*5 + this.state.convB*2 + this.state.kickB*3,
             paB: this.state.tryA*5 + this.state.convA*2 + this.state.kickA*3
         });
-        
         if (this.state.pfA > this.state.paA){ 
             this.setState({
                 awin: 1,
-                bloss: 1
+                bloss: 1,
+                draw: 0
             });
             if ((this.state.tryA - this.state.tryB) >= 3) {
                 this.setState({
@@ -75,7 +75,8 @@ class GameForm extends Component {
         else if (this.state.pfA < this.state.paA) {
             this.setState({
                 aloss: 1,
-                bwin: 1
+                bwin: 1,
+                draw: 0
             })
             if ((this.state.tryB - this.state.tryA) >= 3){
                 this.setState({
