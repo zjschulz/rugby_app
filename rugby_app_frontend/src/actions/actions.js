@@ -132,3 +132,28 @@ export function handleLogin(formdata) {
         .catch(err => console.log("registration error", err));
     }
 }
+
+export function register(formdata) {
+    return (dispatch) => {
+        return fetch(`http://localhost:3001/users`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                email: this.state.email,
+                password: this.state.password,
+                password_confirmation: this.state.password_confirmation
+            }),
+            withCredentials: true
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            if (data.status === "created") {
+                this.props.handleSuccessfulAuth(data)
+            }    
+        })
+        .catch(err => console.log("registration error", err));
+    }
+}

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Registration from './Auth/Registration';
 import Login from './Auth/Login';
+import { connect } from 'react-redux';
+import { handleLogout } from '/home/zjschulz/rugby_app/rugby_app_frontend/src/actions/actions';
 
-export default class Home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -16,28 +18,14 @@ export default class Home extends Component {
   }
 
   handleLogoutClick() {
-    fetch(`http://localhost:3001/logout`, {
-            method: 'DELETE',
-            headers: {
-                'Content-type': 'application/json',
-                'Accept': 'application/json'
-                //"X-CSRF-Token": this.getCookie("CSRF-TOKEN")
-            },
-            withCredentials: true
-        })
-        .then(resp => resp.json())
-        .then(data => {
-          this.props.handleLogout();
-          console.log(data)
-        })
-        .catch(err => console.log(err));
+    this.props.handleLogout()
   }
 
   render () {
     return (
       <div className="home">
         <h1>Home</h1>
-        <h1>Status: {this.props.loggedInStatus}</h1>
+        <h1>Status: {this.props.user.loggedInStatus}</h1>
         <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}/>
         <Login handleSuccessfulAuth={this.handleSuccessfulAuth}/>
         <button onClick={() => this.handleLogoutClick()}>Logout</button>
@@ -45,3 +33,9 @@ export default class Home extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {loggedInStatus: state.loggedInStatus, user: state.user}
+}
+
+export default connect(mapStateToProps)(Home)

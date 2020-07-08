@@ -5,52 +5,49 @@ import Dashboard from './Dashboard';
 import GameForm from './GameForm';
 import TeamForm from './TeamForm';
 import Navbar from './Navbar';
+import { connect } from 'react-redux';
+import { checkLoginStatus } from '../actions/actions';
 
-export default class App extends Component {
+class App extends Component {
   
   constructor() {
     super();
-
-    this.state = {
-      loggedInStatus: "NOT_LOGGED_IN",
-      user: {}
-    };
 
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
 
   }
   
-  checkLoginStatus() {
-    fetch(`http://localhost:3001/logged_in`, {
-            method: 'GET',
-            headers: {
-                'Content-type': 'application/json',
-                'Accept': 'application/json'
-            },
-            withCredentials: true
-        })
-    .then(resp => resp.json())
-    .then(data => console.log(data))
-    .then(data => {
-      if (data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN")
-        this.setState({
-          loggedInStatus: "LOGGED_IN",
-          user: data.user
-        })
-      else if (!data.logged_in & this.state.loggedInStatus === "LOGGED_IN")
-      this.setState({
-        loggedInStatus: "NOT_LOGGED_IN",
-        user: {}
-      });
-    })
-    .catch(err => {
-      console.log("check login error", err);
-    })
-  }
+  // checkLoginStatus() {
+  //   fetch(`http://localhost:3001/logged_in`, {
+  //           method: 'GET',
+  //           headers: {
+  //               'Content-type': 'application/json',
+  //               'Accept': 'application/json'
+  //           },
+  //           withCredentials: true
+  //       })
+  //   .then(resp => resp.json())
+  //   .then(data => console.log(data))
+  //   .then(data => {
+  //     if (data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN")
+  //       this.setState({
+  //         loggedInStatus: "LOGGED_IN",
+  //         user: data.user
+  //       })
+  //     else if (!data.logged_in & this.state.loggedInStatus === "LOGGED_IN")
+  //     this.setState({
+  //       loggedInStatus: "NOT_LOGGED_IN",
+  //       user: {}
+  //     });
+  //   })
+  //   .catch(err => {
+  //     console.log("check login error", err);
+  //   })
+  // }
 
   componentDidMount() {
-    this.checkLoginStatus()
+    this.props.checkLoginStatus()
   }
 
   handleLogout() {
@@ -77,38 +74,28 @@ export default class App extends Component {
               exact
               path={"/"}
               render={props => (
-                <Home
-                {...props}
-                handleLogin={this.handleLogin}
-                handleLogout={this.handleLogout}
-                loggedInStatus={this.state.loggedInStatus}/>
+                <Home {...props}/>
               )} 
             />
             <Route
               exact
               path={"/dashboard"}
               render={props => (
-                <Dashboard {...props}
-                loggedInStatus={this.state.loggedInStatus}
-                user={this.state.user}/>
+                <Dashboard {...props}/>
               )} 
             />
             <Route
               exact
               path={"/gameform"}
               render={props => (
-                <GameForm {...props}
-                loggedInStatus={this.state.loggedInStatus}
-                user={this.state.user} />
+                <GameForm {...props}/>
               )} 
             />
             <Route
               exact
               path={"/teamform"}
               render={props => (
-                <TeamForm {...props}
-                loggedInStatus={this.state.loggedInStatus}
-                user={this.state.user}/>
+                <TeamForm {...props}/>
               )} 
             />
           </Switch>
@@ -117,3 +104,9 @@ export default class App extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {loggedInStatus: state.loggedInStatus, user: state.user}
+}
+
+export default connect(mapStateToProps, { checkLoginStatus })(App)

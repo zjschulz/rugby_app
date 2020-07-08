@@ -21,25 +21,6 @@ class Login extends Component {
         console.log("form submitted");
         event.preventDefault();
         this.props.handleLogin(this.state);
-        // fetch(`http://localhost:3001/sessions`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-type': 'application/json',
-        //         'Accept': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         email: this.state.email,
-        //         password: this.state.password
-        //     }),
-        //     withCredentials: true
-        // })
-        // .then(resp => resp.json())
-        // .then(data => {
-        //     if (data.logged_in) {
-        //         this.props.handleSuccessfulAuth(data);
-        //     }   
-        // })
-        // .catch(err => console.log("registration error", err)); 
     }
 
     handleChange(event) {
