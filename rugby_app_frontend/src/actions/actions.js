@@ -81,3 +81,54 @@ export function updateTeamB(bteam, formData) {
         .catch(err => console.log(err));
     }
 }
+
+export function checkLoginStatus() {
+    return (dispatch) => {
+        return fetch(`http://localhost:3001/logged_in`, {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+            withCredentials: true
+        })
+    .then(resp => resp.json())
+    .then(data => dispatch({ type: 'CHECK_STATUS', payload: data }))}
+}
+
+export function handleLogout() {
+    return (dispatch) => {
+        return fetch(`http://localhost:3001/logout`, {
+            method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+                //"X-CSRF-Token": this.getCookie("CSRF-TOKEN")
+            },
+            withCredentials: true
+        })
+        .then(resp => resp.json())
+        .then(data => dispatch({ type: 'LOGOUT', payload: data }))
+        .catch(err => console.log(err));
+    }
+}
+
+export function handleLogin(formdata) {
+    return (dispatch) => {
+        return fetch(`http://localhost:3001/sessions`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                email: formdata.email,
+                password: formdata.password
+            }),
+            withCredentials: true
+        })
+        .then(resp => resp.json())
+        .then(data => dispatch({ type: 'LOGIN', payload: data }))
+        .catch(err => console.log("registration error", err));
+    }
+}

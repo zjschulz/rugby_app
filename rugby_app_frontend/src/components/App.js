@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Switch, Route} from "react-router-dom";
-import Home from '../containers/Home';
-import Dashboard from '../containers/Dashboard';
+import Home from './Home';
+import Dashboard from './Dashboard';
 import GameForm from './GameForm';
 import TeamForm from './TeamForm';
 import Navbar from './Navbar';
