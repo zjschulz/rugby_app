@@ -1,4 +1,6 @@
-export default function authReducer(state = {user: []}, action) {
+export default function authReducer(state = {
+    loggedInStatus: "NOT_LOGGED_IN",
+    user: {}}, action) {
     switch (action.type){
         case "LOGIN":
             return {...state, user: action.payload}

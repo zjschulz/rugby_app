@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Registration from '../components/Auth/Registration';
-import Login from '../components/Auth/Login';
+import Registration from './Auth/Registration';
+import Login from './Auth/Login';
 
 export default class Home extends Component {
   constructor(props) {
