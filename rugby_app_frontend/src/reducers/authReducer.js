@@ -4,27 +4,19 @@ export default function authReducer(state = {
     switch (action.type){
         case "CHECK_STATUS" :
             if (action.payload.logged_in && state.loggedInStatus === "NOT_LOGGED_IN") {
-                // this.setState({
-                // loggedInStatus: "LOGGED_IN",
-                // user: data.user
-                // })
-                return state}
+                return {loggedInStatus: "LOGGED_IN", user: action.payload.user}}
             else if (!action.payload.logged_in & state.loggedInStatus === "LOGGED_IN") {
-                // this.setState({
-                // loggedInStatus: "NOT_LOGGED_IN",
-                // user: {}
-                // });
-                return state}
-            else
-                return state    
+                return {loggedInStatus: "NOT_LOGGED_IN", user: {}}}
+            else {
+                return state }   
         case "LOGIN" :
+            debugger;
             if (action.payload.logged_in) {
-                // this.setState({
-                // loggedInStatus: "LOGGED_IN",
-                // user: data.user
-                // })
-            }   
-            return state
+                debugger;
+                return {loggedInStatus: "LOGGED_IN", user: action.payload.user}
+            }
+            else { 
+                return state}  
         case "LOGOUT":
                 // this.setState({
                 // loggedInStatus: "NOT_LOGGED_IN",

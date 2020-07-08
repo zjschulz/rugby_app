@@ -1,9 +1,9 @@
-export default function teamReducer(state = {teams: []}, action) {
+export default function teamReducer(state = [], action) {
     switch (action.type){
         case "GET_TEAMS":
-            return {...state, teams: action.payload}
+            return action.payload
         case "ADD_TEAM":
-            return {...state, teams: [...state.teams, action.payload]}
+            return [...state, action.payload]
         case "UPDATE_TEAM":
             return state //updated    
         default:   

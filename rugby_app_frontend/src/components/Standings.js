@@ -22,8 +22,7 @@ class Standings extends React.Component {
             }
             return comparison * -1;
           };
-
-        return this.props.teams.teams.filter(x => x.user_id === this.props.user.id).sort(compare).map((team, index) => <Team
+        return this.props.teams.filter(x => x.user_id === this.props.user.id).sort(compare).map((team, index) => <Team
           key = {index}
           name = {team.name}
           wins = {team.wins}
