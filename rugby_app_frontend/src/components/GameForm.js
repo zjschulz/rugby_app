@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchTeams } from '../actions/actions';
+import { updateTeamA } from '../actions/actions';
+import { updateTeamB } from '../actions/actions';
 
-export default class GameForm extends Component {
+class GameForm extends Component {
   
     constructor(props) {
         super(props);
@@ -25,7 +29,6 @@ export default class GameForm extends Component {
             draw: "",
             bpA: "",
             bpB: "",
-            teams: []
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,60 +36,15 @@ export default class GameForm extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3001/teams')
-        .then(resp => resp.json())
-        .then(data => this.setState({
-            data: data
-        }))
-        .catch(err => alert("team fetch error", err));
+        this.props.fetchTeams()
     };
 
     handleSubmit(event) {
         event.preventDefault();
-        const ateam = this.state.data.find(x => x.name === this.state.teamA);
-        const bteam = this.state.data.find(x => x.name === this.state.teamB);
-        fetch(`http://localhost:3001/teams/${ateam.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                name: ateam.name,
-                wins: ateam.wins + this.state.awin,
-                losses: ateam.losses + this.state.aloss,
-                draws: ateam.draws + this.state.draw,
-                pf: ateam.pf + this.state.pfA,
-                pa: ateam.pa + this.state.paA,
-                pd: ateam.pd + this.state.pfA - this.state.paA,
-                bp: ateam.bp + this.state.bpA,
-                tp: ateam.tp + this.state.awin*4 + this.state.draw*2
-            })
-        })
-        .then(resp => resp.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
-        fetch(`http://localhost:3001/teams/${bteam.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                name: bteam.name,
-                wins: bteam.wins + this.state.bwin,
-                losses: bteam.losses + this.state.bloss,
-                draws: bteam.draws + this.state.draw,
-                pf: bteam.pf + this.state.pfB,
-                pa: bteam.pa + this.state.paB,
-                pd: bteam.pd + this.state.pfB - this.state.paB,
-                bp: bteam.bp + this.state.bpB,
-                tp: bteam.tp + this.state.bwin*4 + this.state.draw*2
-            })
-        })
-        .then(resp => resp.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
+        const ateam = this.props.teams.teams.find(x => x.name === this.state.teamA);
+        const bteam = this.props.teams.teams.find(x => x.name === this.state.teamB);
+        this.props.updateTeamA(ateam, this.state);
+        this.props.updateTeamB(bteam, this.state);
         //redirect to dashboard??
     }
 
@@ -127,7 +85,7 @@ export default class GameForm extends Component {
                 this.setState({
                     bpA: 1
                 })}}
-        else if (this.state.pfA === this.state.paA) {
+        else if (this.state.pfA === this.state.pfB) {
             this.setState({
                 draw: 1
             })}    
@@ -201,3 +159,9 @@ export default class GameForm extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {teams: state.teams}
+}
+
+export default connect(mapStateToProps, { fetchTeams, updateTeamA, updateTeamB })(GameForm)

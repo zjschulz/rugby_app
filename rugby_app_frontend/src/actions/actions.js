@@ -28,7 +28,34 @@ export function addTeam(formData) {
     };
 }
 
-export function updateTeam(ateam, bteam) {
+export function updateTeamA(ateam, formData) {
+    return (dispatch) => {
+        dispatch({ type: 'UPDATE_TEAM'});
+        return fetch(`http://localhost:3001/teams/${ateam.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                name: ateam.name,
+                wins: ateam.wins + formData.awin,
+                losses: ateam.losses + formData.aloss,
+                draws: ateam.draws + formData.draw,
+                pf: ateam.pf + formData.pfA,
+                pa: ateam.pa + formData.paA,
+                pd: ateam.pd + formData.pfA - formData.paA,
+                bp: ateam.bp + formData.bpA,
+                tp: ateam.tp + formData.awin*4 + formData.draw*2 + formData.bpA
+            })
+        })
+        .then(resp => resp.json())
+        .then(data => dispatch({ type: 'UPDATE_TEAM', payload: data }))
+        .catch(err => console.log(err));
+    }
+}
+
+export function updateTeamB(bteam, formData) {
     return (dispatch) => {
         dispatch({ type: 'UPDATE_TEAM'});
         return fetch(`http://localhost:3001/teams/${bteam.id}`, {
@@ -39,18 +66,18 @@ export function updateTeam(ateam, bteam) {
             },
             body: JSON.stringify({
                 name: bteam.name,
-                wins: bteam.wins + this.state.bwin,
-                losses: bteam.losses + this.state.bloss,
-                draws: bteam.draws + this.state.draw,
-                pf: bteam.pf + this.state.pfB,
-                pa: bteam.pa + this.state.paB,
-                pd: bteam.pd + this.state.pfB - this.state.paB,
-                bp: bteam.bp + this.state.bpB,
-                tp: bteam.tp + this.state.bwin*4 + this.state.draw*2
+                wins: bteam.wins + formData.bwin,
+                losses: bteam.losses + formData.bloss,
+                draws: bteam.draws + formData.draw,
+                pf: bteam.pf + formData.pfB,
+                pa: bteam.pa + formData.paB,
+                pd: bteam.pd + formData.pfB - formData.paB,
+                bp: bteam.bp + formData.bpB,
+                tp: bteam.tp + formData.bwin*4 + formData.draw*2 + formData.bpB
             })
         })
         .then(resp => resp.json())
-        .then(data => console.log(data))
+        .then(data => dispatch({ type: 'UPDATE_TEAM', payload: data }))
         .catch(err => console.log(err));
     }
 }
