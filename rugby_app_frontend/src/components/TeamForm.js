@@ -40,7 +40,6 @@ class TeamForm extends Component {
         return (
             <div id="teamform">
                 <h1>New Team Form</h1>
-                <h1>Status: {this.props.loggedInStatus}</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input
                     type="name"
