@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { handleLogout } from '/home/zjschulz/rugby_app/rugby_app_frontend/src/actions/actions';
  
 const link = {
   width: '100px',
@@ -28,9 +29,28 @@ const yeslog = {
   color: 'white',
   display: 'inline-block'
 }
- 
+
+const loggedout = {
+  padding: '12px',
+  margin: '0 6px 6px',
+  background: 'white',
+  textDecoration: 'none',
+  color: 'black',
+  display: 'inline-block'
+}
+
 class Navbar extends React.Component {
   
+  constructor(props) {
+    super(props);
+
+    this.handleLogoutClick = this.handleLogoutClick.bind(this)
+  }
+
+  handleLogoutClick() {
+    this.props.handleLogout()
+  }
+
   renderlog() {
     if (this.props.loggedInStatus === "NOT_LOGGED_IN") {
       return (
@@ -72,6 +92,9 @@ class Navbar extends React.Component {
           activeStyle={{background: 'maroon'}}
         >Team Form</NavLink>
         {this.renderlog()}
+        <button
+        style={loggedout}
+        onClick={() => this.handleLogoutClick()}>Logout</button>
       </div>
     )
   }
@@ -81,4 +104,4 @@ const mapStateToProps = state => {
   return {teams: state.teams, loggedInStatus: state.user.loggedInStatus, user: state.user.user}
 }
 
-export default connect(mapStateToProps)(Navbar)
+export default connect(mapStateToProps, { handleLogout })(Navbar)

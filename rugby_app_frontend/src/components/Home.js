@@ -21,6 +21,8 @@ class Home extends Component {
         <h1>Home</h1>
         <Registration/>
         <Login/>
+        <p></p>
+        <h1>Logout</h1>
         <button onClick={() => this.handleLogoutClick()}>Logout</button>
       </div>
     )
