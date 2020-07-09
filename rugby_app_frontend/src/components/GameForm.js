@@ -36,15 +36,24 @@ class GameForm extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchTeams()
+        this.props.fetchTeams();
     };
+
+    gameCreated() {
+        const main = document.getElementById("gameform")
+        const div = document.createElement('div')
+        div.setAttribute('style',"color: red;")
+        main.append(div)
+        div.innerHTML = "Game Created Between: " + this.state.teamA + " " + this.state.teamB
+    }
 
     handleSubmit(event) {
         event.preventDefault();
-        const ateam = this.props.teams.teams.find(x => x.name === this.state.teamA);
-        const bteam = this.props.teams.teams.find(x => x.name === this.state.teamB);
+        const ateam = this.props.teams.find(x => x.name === this.state.teamA);
+        const bteam = this.props.teams.find(x => x.name === this.state.teamB);
         this.props.updateTeamA(ateam, this.state);
         this.props.updateTeamB(bteam, this.state);
+        this.gameCreated();
         //redirect to dashboard??
     }
 
@@ -91,10 +100,10 @@ class GameForm extends Component {
                 draw: 1
             })}    
     }
-
+    
     render () {
         return (
-            <div>
+            <div id="gameform">
                 <h1>New Game Form</h1>
                 <h1>Status: {this.props.loggedInStatus}</h1>
                 <form onSubmit={this.handleSubmit}>
@@ -156,6 +165,7 @@ class GameForm extends Component {
                     required></input><p></p>                                         
                     <button type="submit">New Game</button>
                 </form>
+                <p></p>
             </div>
         )
     }
