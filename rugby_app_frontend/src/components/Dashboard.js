@@ -8,7 +8,6 @@ class Dashboard extends React.Component {
         return (
             <div>
                 <h1>Dashboard</h1>
-                <h1>Status: {this.props.user.loggedInStatus}</h1>
                 <Standings/>
             </div>
         )
