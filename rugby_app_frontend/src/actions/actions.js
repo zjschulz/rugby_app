@@ -23,16 +23,16 @@ export function addTeam(formData, history) {
             })
         })
         .then(response => response.json())
-        .then(data => function() {
-            if (data.status === 'created') {
-                alert("hi");
-                // dispatch({ type: 'ADD_TEAM', payload: data.team })
+        .then(data => 
+            {if (data.status === 'created') {
+                alert(data.team.name + " created!");
+                dispatch({ type: 'ADD_TEAM', payload: data.team })
             }
             else {
-                alert("hi");
-            }
-        })
-        // .then(promise => {history.push(`/dashboard`)})
+                alert("Error: Team name is invalid. Please review teams and try again.");
+            }}
+        )
+        .then(promise => {history.push(`/dashboard`)})
         .catch(err => alert(err)) 
     };
 }
@@ -122,7 +122,7 @@ export function handleLogout() {
     }
 }
 
-export function handleLogin(formdata, history) {
+export function handleLogin(formdata) {
     return (dispatch) => {
         return fetch(`http://localhost:3001/sessions`, {
             method: 'POST',
@@ -138,7 +138,6 @@ export function handleLogin(formdata, history) {
         })
         .then(resp => resp.json())
         .then(data => dispatch({ type: 'LOGIN', payload: data }))
-        .then(promise => {history.push(`/dashboard`)})
         .catch(err => console.log("registration error", err));
     }
 }

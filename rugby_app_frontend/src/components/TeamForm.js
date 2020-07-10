@@ -15,19 +15,10 @@ class TeamForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
-  
-    // teamCreated() {
-    //     const main = document.getElementById("teamform")
-    //     const div = document.createElement('div')
-    //     div.setAttribute('style',"color: red;")
-    //     main.append(div)
-    //     div.innerHTML = "Team Created: " + this.state.name
-    // }
 
     handleSubmit(event) {
         event.preventDefault();
         this.props.addTeam(this.state, this.props.history);
-        // this.teamCreated();
     };
 
     handleChange(event) {

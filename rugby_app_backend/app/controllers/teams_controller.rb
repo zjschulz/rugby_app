@@ -16,7 +16,7 @@ class TeamsController < ApplicationController
 
         # binding.pry
 
-        if !team.id
+        if team.id
             render json: {
                 status: :created,
                 team: team
