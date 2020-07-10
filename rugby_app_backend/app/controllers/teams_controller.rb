@@ -12,16 +12,7 @@ class TeamsController < ApplicationController
     def create
         user = User.find_by(id: params[:user_id])
         team = Team.create(name: params[:name], wins: 0, losses: 0, draws: 0, pf: 0, pa: 0, pd: 0, bp: 0, tp: 0, user: user)
-        if team.id
-            render json: {
-                status: :created,
-                team: team
-            }
-        else
-            render json: { 
-                status: :not_created
-            }
-        end
+        render :json => team 
     end
 
     def update

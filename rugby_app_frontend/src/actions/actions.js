@@ -23,8 +23,7 @@ export function addTeam(formData) {
             })
         })
         .then(response => response.json())
-        .then(data => console.log(data))
-        // .then(data => dispatch({ type: 'ADD_TEAM', payload: data }))
+        .then(data => dispatch({ type: 'ADD_TEAM', payload: data }))
         .catch(err => alert(err)) 
     };
 }
