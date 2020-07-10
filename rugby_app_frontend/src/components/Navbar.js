@@ -10,6 +10,7 @@ const link = {
   background: 'darkblue',
   textDecoration: 'none',
   color: 'white',
+  border: '2px solid black',
 }
 
 const nolog = {
@@ -18,7 +19,8 @@ const nolog = {
   background: 'red',
   textDecoration: 'none',
   color: 'white',
-  display: 'inline-block'
+  display: 'inline-block',
+  border: '2px solid black',
 }
 
 const yeslog = {
@@ -27,7 +29,8 @@ const yeslog = {
   background: 'green',
   textDecoration: 'none',
   color: 'white',
-  display: 'inline-block'
+  display: 'inline-block',
+  border: '2px solid black',
 }
 
 const loggedout = {
@@ -36,7 +39,9 @@ const loggedout = {
   background: 'white',
   textDecoration: 'none',
   color: 'black',
-  display: 'inline-block'
+  display: 'inline-block',
+  border: '2px solid black',
+  font: 'Times New Roman'
 }
 
 class Navbar extends React.Component {
@@ -64,6 +69,16 @@ class Navbar extends React.Component {
     }
   }
   
+  renderlogout() {
+    if (this.props.loggedInStatus === "LOGGED_IN") {
+      return (
+        <button
+        style={loggedout}
+        onClick={() => this.handleLogoutClick()}>Logout</button>
+      )
+    }
+  }
+
   render() {
     return (
       <div>
@@ -92,9 +107,7 @@ class Navbar extends React.Component {
           activeStyle={{background: 'maroon'}}
         >Team Form</NavLink>
         {this.renderlog()}
-        <button
-        style={loggedout}
-        onClick={() => this.handleLogoutClick()}>Logout</button>
+        {this.renderlogout()}
       </div>
     )
   }
