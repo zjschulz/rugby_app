@@ -19,7 +19,6 @@ class Registration extends Component {
     }
   
     handleSubmit(event) {
-        console.log("form submitted");
         event.preventDefault();
         this.props.register(this.state)
     }

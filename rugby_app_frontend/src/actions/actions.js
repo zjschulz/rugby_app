@@ -145,7 +145,6 @@ export function handleLogin(formdata, history) {
             else {
                 alert("Error: Either email or password incorrect. Please try again.");
             }})
-        // .then(data => dispatch({ type: 'LOGIN', payload: data }))
         .catch(err => console.log("registration error", err));
     }
 }
@@ -166,7 +165,10 @@ export function register(formdata) {
             withCredentials: true
         })
         .then(resp => resp.json())
-        .then(data => dispatch({ type: 'REGISTER', payload: data }))
-        .catch(err => console.log("registration error", err));
+        .then(data => {
+            dispatch({ type: 'REGISTER', payload: data });
+            alert("User created!")
+        })
+        .catch(err => alert("Registration Error: " + err));
     }
 }
