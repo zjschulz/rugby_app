@@ -8,7 +8,7 @@ export function fetchTeams() {
     };
 }
 
-export function addTeam(formData) {
+export function addTeam(formData, history) {
     return (dispatch) => {
         // dispatch({ type: 'ADD_TEAM'});
         return fetch(`http://localhost:3001/teams`, {
@@ -23,7 +23,8 @@ export function addTeam(formData) {
             })
         })
         .then(response => response.json())
-        .then(data => dispatch({ type: 'ADD_TEAM', payload: data }))
+        .then(data => dispatch({ type: 'ADD_TEAM', payload: data.team }))
+        .then(promise => {history.push(`/dashboard`)})
         .catch(err => alert(err)) 
     };
 }

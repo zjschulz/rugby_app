@@ -26,8 +26,8 @@ class TeamForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.addTeam(this.state);
-        this.teamCreated();
+        this.props.addTeam(this.state, this.props.history);
+        // this.teamCreated();
     };
 
     handleChange(event) {
@@ -60,4 +60,10 @@ const mapStateToProps = state => {
     return {teams: state.teams, loggedInStatus: state.user.loggedInStatus, user: state.user.user}
   }
 
-export default connect(mapStateToProps, { addTeam })(TeamForm)
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      addTeam: (formData, history) => dispatch(addTeam(formData, history)),
+    }
+  }  
+
+export default connect(mapStateToProps, mapDispatchToProps)(TeamForm)
