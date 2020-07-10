@@ -122,7 +122,7 @@ export function handleLogout() {
     }
 }
 
-export function handleLogin(formdata) {
+export function handleLogin(formdata, history) {
     return (dispatch) => {
         return fetch(`http://localhost:3001/sessions`, {
             method: 'POST',
@@ -137,7 +137,15 @@ export function handleLogin(formdata) {
             withCredentials: true
         })
         .then(resp => resp.json())
-        .then(data => dispatch({ type: 'LOGIN', payload: data }))
+        .then(data => 
+            {if (data.status === 'created') {
+                dispatch({ type: 'LOGIN', payload: data });
+                history.push('/dashboard')
+            }
+            else {
+                alert("Error: Either email or password incorrect. Please try again.");
+            }})
+        // .then(data => dispatch({ type: 'LOGIN', payload: data }))
         .catch(err => console.log("registration error", err));
     }
 }

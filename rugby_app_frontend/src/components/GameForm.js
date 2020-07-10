@@ -54,7 +54,6 @@ class GameForm extends Component {
         this.props.updateTeamA(ateam, this.state);
         this.props.updateTeamB(bteam, this.state);
         this.gameCreated();
-        //redirect to dashboard??
     }
 
     handleChange(event) {

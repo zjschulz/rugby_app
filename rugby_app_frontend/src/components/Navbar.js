@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
+import { withRouter } from "react-router";
 import { connect } from 'react-redux';
 import { handleLogout } from '/home/zjschulz/rugby_app/rugby_app_frontend/src/actions/actions';
  
@@ -53,7 +54,8 @@ class Navbar extends React.Component {
   }
 
   handleLogoutClick() {
-    this.props.handleLogout()
+    this.props.handleLogout();
+    this.props.history.push('/')
   }
 
   renderlog() {
@@ -117,4 +119,4 @@ const mapStateToProps = state => {
   return {teams: state.teams, loggedInStatus: state.user.loggedInStatus, user: state.user.user}
 }
 
-export default connect(mapStateToProps, { handleLogout })(Navbar)
+export default connect(mapStateToProps, { handleLogout })(withRouter(Navbar))
