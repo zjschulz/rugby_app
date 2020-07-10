@@ -10,7 +10,7 @@ class Home extends Component {
       return <Login/>
     }
     else {
-        return (<h1>Logged In</h1>)
+      return (<h2>Welcome {this.props.user.user.email}!</h2>)
     }
   }
   
