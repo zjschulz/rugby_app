@@ -5,12 +5,21 @@ import { connect } from 'react-redux';
 
 class Home extends Component {
 
+  showLogin() {
+    if (this.props.user.loggedInStatus === "NOT_LOGGED_IN") {
+      return <Login/>
+    }
+    else {
+        return (<h1>Logged In</h1>)
+    }
+  }
+  
   render () {
     return (
       <div className="home">
         <h1>Home</h1>
         <Registration/>
-        <Login/>
+        {this.showLogin()}
       </div>
     )
   }

@@ -59,12 +59,12 @@ class Navbar extends React.Component {
   renderlog() {
     if (this.props.loggedInStatus === "NOT_LOGGED_IN") {
       return (
-        <button style={nolog}>{this.props.loggedInStatus}</button>
+        <button style={nolog}>Not Logged In</button>
       )
     }
     else if (this.props.loggedInStatus === "LOGGED_IN") {
       return (
-        <button style={yeslog}>{this.props.loggedInStatus}</button>
+        <button style={yeslog}>Logged In</button>
       )
     }
   }
@@ -91,7 +91,7 @@ class Navbar extends React.Component {
         <NavLink
           to="/dashboard"
           exact
-          style={link}
+          style={link} 
           activeStyle={{background: 'maroon'}}
         >Dashboard</NavLink>
         <NavLink

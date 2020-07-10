@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleLogin } from '/home/zjschulz/rugby_app/rugby_app_frontend/src/actions/actions';
+import { withRouter } from "react-router";
 
 class Login extends Component {
   
@@ -18,9 +19,9 @@ class Login extends Component {
     }
   
     handleSubmit(event) {
-        console.log("form submitted");
         event.preventDefault();
         this.props.handleLogin(this.state);
+        this.props.history.push('/dashboard')
     }
 
     handleChange(event) {
@@ -59,4 +60,4 @@ const mapStateToProps = state => {
     return {loggedInStatus: state.loggedInStatus, user: state.user}
 }
 
-export default connect(mapStateToProps, { handleLogin })(Login)
+export default connect(mapStateToProps, { handleLogin })(withRouter(Login))
