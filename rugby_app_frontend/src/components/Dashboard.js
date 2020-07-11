@@ -11,13 +11,14 @@ class Dashboard extends React.Component {
                 <Standings/>
                 <div class="jumbotron" style={{padding:"2rem", margin:"2rem"}}>
                 <h2 class="display-3">Rugby Union Bonus Points System</h2>
-                <p class="lead"><ul>
+                <p class="lead"></p>
+                <ul>
                     <li>4 points for a win</li>
                     <li>2 points for a draw</li>
                     <li>0 points for losing a match</li>
                     <li>1 "bonus" point for winning while scoring at least 3 more tries than the opponent</li>
                     <li>1 "bonus" point for losing by no more than 8 points</li>
-                </ul></p>
+                </ul>
                 <hr class="my-4"></hr>
                 <p>The French professional league, Ligue Nationale de Rugby (LNR), uses a similar system in its two competitions, the Top 14 and Rugby Pro D2. After trialling the system in 2007–08, LNR adopted the new system permanently after that season.[1] This system prevents a losing team from picking up two bonus points in the same match, as is possible under the normal system.[2] It also means that neither team earns a bonus point in a drawn match.</p>
                 <hr class="my-4"></hr>
