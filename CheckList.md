@@ -15,7 +15,7 @@ This form reviews all requirements in the spec.md form, as well as project stand
 # react-router is being used with proper RESTful routing *
 [X]
 # Redux and redux-thunk middleware are being used to modify state change and make use of async actions to send data and receive data from the server *
-[_]
+[X]
 # Use of Rails API backend to persist data for the application *
 [X]
 # Good understanding of the react/redux state flow *
