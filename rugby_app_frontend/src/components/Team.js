@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Team extends Component {
     render(){
         return(
-            <tr>
+            <tr class="table-secondary">
                 <td>{this.props.name}</td> 
                 <td>{this.props.wins}</td>
                 <td>{this.props.losses}</td>

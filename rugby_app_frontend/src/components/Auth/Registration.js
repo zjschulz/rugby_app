@@ -32,7 +32,7 @@ class Registration extends Component {
     render () {
         return (
             <div>
-                <h1>Registration</h1>
+                <h2>Registration</h2>
                 <form onSubmit={this.handleSubmit}>
                     <input
                     type="email"

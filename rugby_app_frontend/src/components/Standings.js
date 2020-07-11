@@ -39,7 +39,7 @@ class Standings extends React.Component {
     render() {    
         return (
             <div>
-            <table>
+            <table class="table table-hover">
                 <tbody>
                 <tr>
                     <th>Team Name</th>

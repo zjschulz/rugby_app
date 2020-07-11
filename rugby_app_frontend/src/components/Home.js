@@ -10,16 +10,16 @@ class Home extends Component {
       return <Login/>
     }
     else {
-      return (<h2>Welcome {this.props.user.user.email}!</h2>)
+      return (<h2><small class="text-muted">Welcome {this.props.user.user.email}!</small></h2>)
     }
   }
   
   render () {
     return (
       <div className="home">
-        <h1>Home</h1>
-        <Registration/>
+        <h1>Rugby Tournament Standings Application</h1>
         {this.showLogin()}
+        <Registration/>
       </div>
     )
   }

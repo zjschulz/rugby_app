@@ -83,7 +83,7 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <NavLink
           to="/"
           exact
@@ -110,7 +110,7 @@ class Navbar extends React.Component {
         >Team Form</NavLink>
         {this.renderlog()}
         {this.renderlogout()}
-      </div>
+      </nav>
     )
   }
 }
