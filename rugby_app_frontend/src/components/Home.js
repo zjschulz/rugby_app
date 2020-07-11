@@ -17,7 +17,12 @@ class Home extends Component {
   render () {
     return (
       <div className="home">
-        <h1>Rugby Tournament Standings Application</h1>
+        <div class="jumbotron" style={{padding:"2rem", margin:"2rem"}}>
+            <h2 class="display-3">Try Awarded</h2>
+            <p class="lead">A Zachary Schulz Application</p>
+            <hr class="my-4"></hr>
+            <p>This application was designed to input and track the current standings for a rugby division, tournament, league, etc. A user is able to use authentication tools to sign up, login, and logout. Onced logged in, a user may create teams for their uses. After teams are created, a user may input game statistics between two teams. This data is then updated and presented to the user via the dashboard page. On the dashboard page is also a brief explanation on how the total points are calculated for each team. The dashboard page also present the current standings for the teams, with the number 1 ranking being on top of the table.</p>
+       </div>
         {this.showLogin()}
         <Registration/>
       </div>
