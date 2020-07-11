@@ -33,12 +33,21 @@ class GameForm extends Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.availableTeams = this.availableTeams.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchTeams();
     };
 
+    availableTeams() {
+        return this.props.teams.filter(x => x.user_id === this.props.user.id).map(team => {
+            return (
+                <li>{team.name}</li>
+            )
+        })
+    }
+        
     gameCreated() {
         const main = document.getElementById("gameform")
         const div = document.createElement('div')
@@ -164,6 +173,8 @@ class GameForm extends Component {
                     <button type="submit">New Game</button>
                 </form>
                 <p></p>
+                <h2>Available Teams</h2>
+                <ul>{this.availableTeams()}</ul>
             </div>
         )
     }
