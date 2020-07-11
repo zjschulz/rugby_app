@@ -9,7 +9,7 @@ class Dashboard extends React.Component {
             <div class="dashboard">
                 <h1>Dashboard</h1>
                 <Standings/>
-                <div class="jumbotron">
+                <div class="jumbotron" style={{padding:"2rem", margin:"2rem"}}>
                 <h2 class="display-3">Rugby Union Bonus Points System</h2>
                 <p class="lead"><ul>
                     <li>4 points for a win</li>
