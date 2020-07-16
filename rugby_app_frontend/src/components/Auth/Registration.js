@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; 
 import { connect } from 'react-redux';
-import { register } from '/home/zjschulz/rugby_app/rugby_app_frontend/src/actions/actions';
+import { register } from '/home/zjschulz/code/rugby_app/rugby_app_frontend/src/actions/actions.js';
 
 class Registration extends Component {
   

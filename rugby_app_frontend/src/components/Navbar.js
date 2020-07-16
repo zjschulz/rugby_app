@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import { withRouter } from "react-router";
 import { connect } from 'react-redux';
-import { handleLogout } from '/home/zjschulz/rugby_app/rugby_app_frontend/src/actions/actions';
+import { handleLogout } from '../actions/actions';
  
 const link = {
   width: '100px',

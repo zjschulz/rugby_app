@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { handleLogin } from '/home/zjschulz/rugby_app/rugby_app_frontend/src/actions/actions';
+import { handleLogin } from '/home/zjschulz/code/rugby_app/rugby_app_frontend/src/actions/actions.js';
 import { withRouter } from "react-router";
 
 class Login extends Component {
