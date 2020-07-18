@@ -10,6 +10,7 @@ class Standings extends React.Component {
     };
 
     generateTeams = () => {
+        // .sort((a, b) => b - a) for just alphabetical/numeric order
         function compare(a, b) {
             const tpA = a.tp;
             const tpB = b.tp;
