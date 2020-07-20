@@ -12,28 +12,29 @@ class GameForm extends Component {
         this.state = {
             teamA: "",
             teamB: "",
-            tryA: "",
-            tryB: "",
-            convA: "",
-            convB: "",
-            kickA: "",
-            kickB: "",
-            pfA: "",
-            pfB: "",
-            paA: "",
-            paB: "",
-            awin: "",
-            bwin: "",
-            aloss: "",
-            bloss: "",
-            draw: "",
-            bpA: "",
-            bpB: "",
+            tryA: 0,
+            tryB: 0,
+            convA: 0,
+            convB: 0,
+            kickA: 0,
+            kickB: 0,
+            pfA: 0,
+            pfB: 0,
+            paA: 0,
+            paB: 0,
+            awin: 0,
+            bwin: 0,
+            aloss: 0,
+            bloss: 0,
+            draw: 0,
+            bpA: 0,
+            bpB: 0,
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.availableTeams = this.availableTeams.bind(this);
+        this.updatePoints = this.updatePoints.bind(this);
     }
 
     componentDidMount() {
@@ -109,7 +110,48 @@ class GameForm extends Component {
             })}    
     }
     
-    render () {
+    updatePoints() {
+        this.setState({
+            pfA: this.state.tryA*5 + this.state.convA*2 + this.state.kickA*3,
+            pfB: this.state.tryB*5 + this.state.convB*2 + this.state.kickB*3,
+            paA: this.state.tryB*5 + this.state.convB*2 + this.state.kickB*3,
+            paB: this.state.tryA*5 + this.state.convA*2 + this.state.kickA*3
+        });
+        if (this.state.pfA > this.state.paA){ 
+            this.setState({
+                awin: 1,
+                bloss: 1,
+                draw: 0
+            });
+            if ((this.state.tryA - this.state.tryB) >= 3) {
+                this.setState({
+                    bpA: 1
+                })}
+            else if ((this.state.pfA - this.state.paA) <= 8 ){
+                this.setState({
+                    bpB: 1
+                })}}
+        else if (this.state.pfA < this.state.paA) {
+            this.setState({
+                aloss: 1,
+                bwin: 1,
+                draw: 0
+            })
+            if ((this.state.tryB - this.state.tryA) >= 3){
+                this.setState({
+                    bpB: 1
+                })}
+            else if ((this.state.pfB - this.state.paB) <= 8 ){
+                this.setState({
+                    bpA: 1
+                })}}
+        else if (this.state.pfA === this.state.pfB) {
+            this.setState({
+                draw: 1
+            })}   
+    }
+
+    render() {
         return (
             <div id="gameform">
                 <h1>New Game Form</h1>
@@ -172,6 +214,7 @@ class GameForm extends Component {
                     required></input><p></p>                                         
                     <button type="submit">New Game</button>
                 </form>
+                {/* <button onClick={this.updatePoints}>Update Points</button> */}
                 <p></p>
                 <h2>Available Teams</h2>
                 <ul>{this.availableTeams()}</ul>
