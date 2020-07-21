@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchTeams } from '../actions/actions';
 import { updateTeamA } from '../actions/actions';
 import { updateTeamB } from '../actions/actions';
+import CurrentTeams from './CurrentTeams';
 
 class GameForm extends Component {
   
@@ -33,34 +34,12 @@ class GameForm extends Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.availableTeams = this.availableTeams.bind(this);
         this.updatePoints = this.updatePoints.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchTeams();
     };
-
-    availableTeams() {
-        function compare(a, b) {
-            const nameA = a.name;
-            const nameB = b.name;
-          
-            let comparison = 0;
-            if (nameA > nameB) {
-              comparison = 1;
-            } else if (nameA < nameB) {
-              comparison = -1;
-            }
-            return comparison * 1;
-          };
-
-        return this.props.teams.filter(x => x.user_id === this.props.user.id).sort(compare).map(team => {
-            return (
-                <li>{team.name}</li>
-            )
-        })
-    }
         
     gameCreated() {
         const main = document.getElementById("gameform")
@@ -289,8 +268,7 @@ class GameForm extends Component {
                 </form>
                     <button onClick={this.updatePoints}>Update Points</button> 
                 <p></p>
-                <h2>Available Teams</h2>
-                <ul>{this.availableTeams()}</ul>
+                <CurrentTeams/>
             </div>
         )
     }

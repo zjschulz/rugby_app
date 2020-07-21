@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addTeam } from '../actions/actions';
+import CurrentTeams from './CurrentTeams';
  
 class TeamForm extends Component {
   
@@ -28,27 +29,6 @@ class TeamForm extends Component {
         })
     }
 
-    availableTeams() {
-        function compare(a, b) {
-            const nameA = a.name;
-            const nameB = b.name;
-          
-            let comparison = 0;
-            if (nameA > nameB) {
-              comparison = 1;
-            } else if (nameA < nameB) {
-              comparison = -1;
-            }
-            return comparison * 1;
-          };
-
-        return this.props.teams.filter(x => x.user_id === this.props.user.id).sort(compare).map(team => {
-            return (
-                <li>{team.name}</li>
-            )
-        })
-    }
-
     render () {
         return (
             <div id="teamform" style={{marginLeft: '20px'}}>
@@ -64,8 +44,7 @@ class TeamForm extends Component {
                     <button type="submit">Submit New Team</button>
                 </form>
                 <p></p>
-                <h2>Current Teams</h2>
-                <ul>{this.availableTeams()}</ul>
+                <CurrentTeams/>
             </div>
         )
     }
