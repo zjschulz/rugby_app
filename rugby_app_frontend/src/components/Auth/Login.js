@@ -31,7 +31,7 @@ class Login extends Component {
 
     render () {
         return (
-            <div>
+            <div style={{marginLeft: '20px'}}>
                 <h2>Login</h2>
                 <form onSubmit={this.handleSubmit}>
                     <input

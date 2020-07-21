@@ -38,7 +38,7 @@ class TeamForm extends Component {
 
     render () {
         return (
-            <div id="teamform">
+            <div id="teamform" style={{marginLeft: '20px'}}>
                 <h1>New Team Form</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input

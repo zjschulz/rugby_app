@@ -6,7 +6,7 @@ class Dashboard extends React.Component {
     
     render () {
         return (
-            <div class="dashboard">
+            <div class="dashboard" style={{marginLeft: '20px', marginRight: '20px'}}>
                 <h1>Dashboard</h1>
                 <Standings/>
                 <div class="jumbotron" style={{padding:"2rem", margin:"2rem"}}>

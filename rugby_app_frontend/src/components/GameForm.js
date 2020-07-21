@@ -84,11 +84,13 @@ class GameForm extends Component {
             });
             if ((this.state.tryA - this.state.tryB) >= 3) {
                 this.setState({
-                    bpA: 1
+                    bpA: 1,
+                    bpB: 0
                 })}
             else if ((this.state.pfA - this.state.paA) <= 8 ){
                 this.setState({
-                    bpB: 1
+                    bpB: 1,
+                    bpA: 0
                 })}}
         else if (this.state.pfA < this.state.paA) {
             this.setState({
@@ -98,15 +100,23 @@ class GameForm extends Component {
             })
             if ((this.state.tryB - this.state.tryA) >= 3){
                 this.setState({
-                    bpB: 1
+                    bpB: 1,
+                    bpA: 0
                 })}
             else if ((this.state.pfB - this.state.paB) <= 8 ){
                 this.setState({
-                    bpA: 1
+                    bpA: 1,
+                    bpB: 0
                 })}}
         else if (this.state.pfA === this.state.pfB) {
             this.setState({
-                draw: 1
+                draw: 1,
+                awin: 0,
+                bwin: 0,
+                aloss: 0,
+                bloss: 0,
+                bpA: 0,
+                bpB: 0
             })}    
     }
     
@@ -125,11 +135,13 @@ class GameForm extends Component {
             });
             if ((this.state.tryA - this.state.tryB) >= 3) {
                 this.setState({
-                    bpA: 1
+                    bpA: 1,
+                    bpB: 0
                 })}
             else if ((this.state.pfA - this.state.paA) <= 8 ){
                 this.setState({
-                    bpB: 1
+                    bpB: 1,
+                    bpA: 0
                 })}}
         else if (this.state.pfA < this.state.paA) {
             this.setState({
@@ -139,21 +151,29 @@ class GameForm extends Component {
             })
             if ((this.state.tryB - this.state.tryA) >= 3){
                 this.setState({
-                    bpB: 1
+                    bpB: 1,
+                    bpA: 0
                 })}
             else if ((this.state.pfB - this.state.paB) <= 8 ){
                 this.setState({
-                    bpA: 1
+                    bpA: 1,
+                    bpB: 0
                 })}}
         else if (this.state.pfA === this.state.pfB) {
             this.setState({
-                draw: 1
+                draw: 1,
+                awin: 0,
+                bwin: 0,
+                aloss: 0,
+                bloss: 0,
+                bpA: 0,
+                bpB: 0
             })}   
     }
 
     render() {
         return (
-            <div id="gameform">
+            <div id="gameform" style={{marginLeft: '20px'}}>
                 <h1>New Game Form</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input
@@ -211,11 +231,8 @@ class GameForm extends Component {
                     placeholder="Away Team Kicks"
                     value={this.state.kickB}
                     onChange={this.handleChange}
-                    required></input><p></p>                                         
-                    <button type="submit">New Game</button>
-                    <p style={{color: "red"}}>***Check Info Below and Click Update Form Button Before Submitting***</p>
-                </form>
-                <table class="table table-hover" style={{width: "30%"}}>
+                    required></input><p></p>
+                                    <table class="table table-hover" style={{width: "30%"}}>
                     <tbody>
                         <tr>
                             <th>Team</th>
@@ -239,8 +256,8 @@ class GameForm extends Component {
                         </tr>
                         <tr class="table-secondary">
                             <td>Loss</td>
-                            <td>{this.state.awin}</td>
-                            <td>{this.state.bwin}</td>
+                            <td>{this.state.aloss}</td>
+                            <td>{this.state.bloss}</td>
                         </tr>
                         <tr class="table-secondary">
                             <td>Draw</td>
@@ -253,8 +270,11 @@ class GameForm extends Component {
                             <td>{this.state.bpB}</td>
                         </tr>
                     </tbody>
-                </table>
-                <button onClick={this.updatePoints}>Update Points</button>
+                </table>                                       
+                    <p style={{color: "red"}}>***Check Info and Click Update Form Button Before Submitting***</p>
+                    <button type="submit">Submit Game</button>
+                </form>
+                    <button onClick={this.updatePoints}>Update Points</button> 
                 <p></p>
                 <h2>Available Teams</h2>
                 <ul>{this.availableTeams()}</ul>

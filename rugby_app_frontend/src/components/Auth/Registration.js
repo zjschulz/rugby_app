@@ -31,7 +31,7 @@ class Registration extends Component {
 
     render () {
         return (
-            <div>
+            <div style={{marginLeft: '20px'}}>
                 <h2>Registration</h2>
                 <form onSubmit={this.handleSubmit}>
                     <input
