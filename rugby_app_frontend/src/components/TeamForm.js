@@ -29,7 +29,20 @@ class TeamForm extends Component {
     }
 
     availableTeams() {
-        return this.props.teams.filter(x => x.user_id === this.props.user.id).map(team => {
+        function compare(a, b) {
+            const nameA = a.name;
+            const nameB = b.name;
+          
+            let comparison = 0;
+            if (nameA > nameB) {
+              comparison = 1;
+            } else if (nameA < nameB) {
+              comparison = -1;
+            }
+            return comparison * 1;
+          };
+
+        return this.props.teams.filter(x => x.user_id === this.props.user.id).sort(compare).map(team => {
             return (
                 <li>{team.name}</li>
             )
