@@ -14,6 +14,7 @@ class TeamForm extends Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.updatePoints = this.availableTeams.bind(this);
     }
 
     handleSubmit(event) {
@@ -24,6 +25,14 @@ class TeamForm extends Component {
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
+        })
+    }
+
+    availableTeams() {
+        return this.props.teams.filter(x => x.user_id === this.props.user.id).map(team => {
+            return (
+                <li>{team.name}</li>
+            )
         })
     }
 
@@ -42,6 +51,8 @@ class TeamForm extends Component {
                     <button type="submit">Submit New Team</button>
                 </form>
                 <p></p>
+                <h2>Current Teams</h2>
+                <ul>{this.availableTeams()}</ul>
             </div>
         )
     }

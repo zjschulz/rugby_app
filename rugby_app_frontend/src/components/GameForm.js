@@ -12,23 +12,23 @@ class GameForm extends Component {
         this.state = {
             teamA: "",
             teamB: "",
-            tryA: 0,
-            tryB: 0,
-            convA: 0,
-            convB: 0,
-            kickA: 0,
-            kickB: 0,
-            pfA: 0,
-            pfB: 0,
-            paA: 0,
-            paB: 0,
-            awin: 0,
-            bwin: 0,
-            aloss: 0,
-            bloss: 0,
-            draw: 0,
-            bpA: 0,
-            bpB: 0,
+            tryA: "",
+            tryB: "",
+            convA: "",
+            convB: "",
+            kickA: "",
+            kickB: "",
+            pfA: "",
+            pfB: "",
+            paA: "",
+            paB: "",
+            awin: "",
+            bwin: "",
+            aloss: "",
+            bloss: "",
+            draw: "",
+            bpA: "",
+            bpB: "",
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -213,8 +213,48 @@ class GameForm extends Component {
                     onChange={this.handleChange}
                     required></input><p></p>                                         
                     <button type="submit">New Game</button>
+                    <p style={{color: "red"}}>***Check Info Below and Click Update Form Button Before Submitting***</p>
                 </form>
-                {/* <button onClick={this.updatePoints}>Update Points</button> */}
+                <table class="table table-hover" style={{width: "30%"}}>
+                    <tbody>
+                        <tr>
+                            <th>Team</th>
+                            <th>{this.state.teamA}</th>
+                            <th>{this.state.teamB}</th>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td>Points For</td>
+                            <td>{this.state.pfA}</td>
+                            <td>{this.state.pfB}</td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td>Points Against</td>
+                            <td>{this.state.paA}</td>
+                            <td>{this.state.paB}</td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td>Win</td>
+                            <td>{this.state.awin}</td>
+                            <td>{this.state.bwin}</td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td>Loss</td>
+                            <td>{this.state.awin}</td>
+                            <td>{this.state.bwin}</td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td>Draw</td>
+                            <td>{this.state.draw}</td>
+                            <td>{this.state.draw}</td>
+                        </tr>
+                        <tr class="table-secondary">
+                            <td>Bonus Points</td>
+                            <td>{this.state.bpA}</td>
+                            <td>{this.state.bpB}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button onClick={this.updatePoints}>Update Points</button>
                 <p></p>
                 <h2>Available Teams</h2>
                 <ul>{this.availableTeams()}</ul>
