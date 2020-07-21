@@ -15,7 +15,6 @@ class TeamForm extends Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.updatePoints = this.availableTeams.bind(this);
     }
 
     handleSubmit(event) {
@@ -54,10 +53,10 @@ const mapStateToProps = state => {
     return {teams: state.teams, loggedInStatus: state.user.loggedInStatus, user: state.user.user}
   }
 
-  const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
-      addTeam: (formData, history) => dispatch(addTeam(formData, history)),
+        addTeam: (formData, history) => dispatch(addTeam(formData, history)),
     }
-  }  
+}  
 
 export default connect(mapStateToProps, mapDispatchToProps)(TeamForm)
