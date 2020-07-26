@@ -278,4 +278,8 @@ const mapStateToProps = state => {
     return {teams: state.teams, loggedInStatus: state.user.loggedInStatus, user: state.user.user}
 }
 
+// const mapDispatchToProps = dispatch => {
+//     return { fetchTeams: () => dispatch(fetchTeams())}
+// }
+
 export default connect(mapStateToProps, { fetchTeams, updateTeamA, updateTeamB })(GameForm)

@@ -19,7 +19,9 @@ class TeamForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        console.log(2)
         this.props.addTeam(this.state, this.props.history);
+        console.log(3)
     };
 
     handleChange(event) {
@@ -29,6 +31,7 @@ class TeamForm extends Component {
     }
 
     render () {
+        console.log(4)
         return (
             <div id="teamform" style={{marginLeft: '20px'}}>
                 <h1>New Team Form</h1>

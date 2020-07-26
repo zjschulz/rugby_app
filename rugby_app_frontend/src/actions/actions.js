@@ -1,6 +1,7 @@
 export function fetchTeams() {
     return (dispatch) => {
         // dispatch({ type: 'GET_TEAMS' });
+        // do I even need the return below here? I dont think so
         return fetch('http://localhost:3001/teams')
         .then(response => response.json())
         .then(data => dispatch({ type: 'GET_TEAMS', payload: data }))
