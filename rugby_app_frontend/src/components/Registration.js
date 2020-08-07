@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; 
 import { connect } from 'react-redux';
-import { handleLogin } from '/home/zjschulz/code/rugby_app/rugby_app_frontend/src/actions/actions.js';
-import { withRouter } from "react-router";
+import { register } from '../actions/actions';
 
-class Login extends Component {
+class Registration extends Component {
   
     constructor(props) {
         super(props);
@@ -11,7 +10,8 @@ class Login extends Component {
         this.state = {
             email: "",
             password: "",
-            loginErrors: ""
+            password_confirmation: "",
+            registrationErrors: ""
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,7 +20,7 @@ class Login extends Component {
   
     handleSubmit(event) {
         event.preventDefault();
-        this.props.handleLogin(this.state, this.props.history);
+        this.props.register(this.state)
     }
 
     handleChange(event) {
@@ -32,7 +32,7 @@ class Login extends Component {
     render () {
         return (
             <div style={{marginLeft: '20px'}}>
-                <h2>Login</h2>
+                <h2>Registration</h2>
                 <form onSubmit={this.handleSubmit}>
                     <input
                     type="email"
@@ -48,15 +48,18 @@ class Login extends Component {
                     value={this.state.password}
                     onChange={this.handleChange}
                     required></input>
-                    <button type="submit">Login</button>
+                    <input
+                    type="password"
+                    name="password_confirmation"
+                    placeholder="Password Confirmation"
+                    value={this.state.password_confirmation}
+                    onChange={this.handleChange}
+                    required></input>
+                    <button type="submit">Register</button>
                 </form>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
-    return {loggedInStatus: state.loggedInStatus, user: state.user}
-}
-
-export default connect(mapStateToProps, { handleLogin })(withRouter(Login))
+export default connect(null, { register })(Registration)
