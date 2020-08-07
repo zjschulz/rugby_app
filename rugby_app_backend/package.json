@@ -11,5 +11,8 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
-  }
+  },
+  "scripts": {
+    "publishToHeroku": "cd ../ && git subtree push --prefix rugby_app_backend heroku-rugby-backend master || true"
+ }
 }
