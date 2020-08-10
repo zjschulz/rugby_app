@@ -5,7 +5,6 @@ import { fetchTeams } from '../actions/actions';
 
 class Standings extends React.Component {
 
-    // hook
     componentDidMount() {
         this.props.fetchTeams()
     };
@@ -65,9 +64,5 @@ class Standings extends React.Component {
 const mapStateToProps = state => {
     return {teams: state.teams, user: state.user.user}
 }
-
-// const mapStateToProps = dispatch => {
-//     return {fetchTeams: () => dispatch(fetchTeams()),}
-// }
 
 export default connect(mapStateToProps, { fetchTeams })(Standings)

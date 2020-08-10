@@ -6,7 +6,7 @@ export default function teamReducer(state = [], action) {
         case "ADD_TEAM":
             return [...state, action.payload]
         case "UPDATE_TEAM":
-            return state //updated    
+            return state  
         default:   
             return state;
     }

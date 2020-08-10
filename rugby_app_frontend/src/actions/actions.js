@@ -11,7 +11,6 @@ export function fetchTeams() {
 
 export function addTeam(formData, history) {
     return (dispatch) => {
-        // dispatch({ type: 'ADD_TEAM'});
         return fetch(`http://localhost:3001/teams`, {
             method: 'POST',
             headers: {
@@ -113,7 +112,6 @@ export function handleLogout() {
             headers: {
                 'Content-type': 'application/json',
                 'Accept': 'application/json'
-                //"X-CSRF-Token": this.getCookie("CSRF-TOKEN")
             },
             withCredentials: true
         })
