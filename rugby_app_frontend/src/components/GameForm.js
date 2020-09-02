@@ -42,11 +42,7 @@ class GameForm extends Component {
     };
         
     gameCreated() {
-        const main = document.getElementById("gameform")
-        const div = document.createElement('div')
-        div.setAttribute('style',"color: red;")
-        main.append(div)
-        div.innerHTML = "Game Created Between: " + this.state.teamA + " " + this.state.teamB
+        alert("Game Created Between: " + this.state.teamA + " and " + this.state.teamB);
     }
 
     handleSubmit(event) {
@@ -263,8 +259,8 @@ class GameForm extends Component {
                         </tr>
                     </tbody>
                 </table>                                       
-                    <p style={{color: "red"}}>***Check Info and Click Update Form Button Before Submitting***</p>
                     <button type="submit">Submit Game</button>
+                    <p style={{color: "red"}}>***Check Info and Click Update Form Button Before Submitting***</p>
                 </form>
                     <button onClick={this.updatePoints}>Update Points</button> 
                 <p></p>

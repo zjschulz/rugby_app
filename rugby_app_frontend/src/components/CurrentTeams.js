@@ -29,10 +29,20 @@ class CurrentTeams extends Component {
             )
         })
     }
-    
+
     render(){
         return(
-            <div id="currentteams">
+            <div id="currentteams" style={{
+            position: 'fixed',
+            zIndex: '1',
+            height: '100%',
+            width: '20%',
+            top: '15%',
+            right: '0',
+            backgroundColor: '#eee',
+            overflowX: 'hidden',
+            paddingTop: '20px',
+            textAlign: 'center'}}>
                 <h2>Available Teams</h2>
                 <ul>{this.availableTeams()}</ul>
             </div>
